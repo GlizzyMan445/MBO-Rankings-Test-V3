@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Current Marion Beyblade Organization competitor rankings.">
+  <title>Marion Beyblade Organization Rankings</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #10131b;
+      color: #fff;
+      margin: 0;
+      padding: clamp(16px, 5vw, 30px) 16px;
+    }
+
+    main {
+      width: 100%;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      color: #ffd43b;
+      font-size: clamp(1.5rem, 5vw, 2rem);
+      margin-bottom: 8px;
+    }
+
+    .updated {
+      color: #c5cad6;
+      margin-bottom: 20px;
+    }
+
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border-radius: 8px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #1b2030;
+    }
+
+    th,
+    td {
+      padding: 12px;
+      border-bottom: 1px solid #343b50;
+      text-align: left;
+    }
+
+    th {
+      color: #ffd43b;
+    }
+
+    tbody tr:hover {
+      background: #282f43;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .rank {
+      font-weight: bold;
+    }
+
+    @media (max-width: 480px) {
+      th,
+      td {
+        padding: 10px 8px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <h1>Marion Beyblade Organization</h1>
+    <p class="updated">
+      Competitor rankings — updated: <span id="updated"></span>
+    </p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Rank</th>
+            <th scope="col">Blader</th>
+            <th scope="col">Points</th>
+          </tr>
+        </thead>
+        <tbody id="leaderboard"></tbody>
+      </table>
+    </div>
+  </main>
+
+  <script>
+    // Change names and points here when rankings change.
+    const competitors = [
+      { name: "Lenzie", points: 149 },
+      { name: "SKATE", points: 23 },
+      { name: "Tym", points: 67 } 
+    ];
+
+    competitors.sort((a, b) => b.points - a.points);
+
+    const leaderboard = document.getElementById("leaderboard");
+
+    competitors.forEach((competitor, index) => {
+      const row = document.createElement("tr");
+
+      const rankCell = document.createElement("td");
+      rankCell.className = "rank";
+      rankCell.textContent = index + 1;
+
+      const nameCell = document.createElement("td");
+      nameCell.textContent = competitor.name;
+
+      const pointsCell = document.createElement("td");
+      pointsCell.textContent = competitor.points;
+
+      row.append(rankCell, nameCell, pointsCell);
+      leaderboard.appendChild(row);
+    });
+
+    document.getElementById("updated").textContent =
+      new Date().toLocaleDateString();
+  </script>
+</body>
+</html>
